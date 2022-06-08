@@ -1,8 +1,11 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.List;
 
 public class HomePage extends Utils {
 
@@ -13,7 +16,7 @@ public class HomePage extends Utils {
     private By _clickPriceDollar = By.xpath("//span[contains(text(),'$1,200.00')]");
     private By _clickCurrencyEuro = By.xpath("//select[@id=\"customerCurrency\"]");
     private By _clickPriceEuro = By.xpath("//span[contains(text(),'€1032.00')]");
-   private By _clickGood = By.xpath("//input[@id=\"pollanswers-2\"]");
+    private By _clickGood = By.xpath("//input[@id=\"pollanswers-2\"]");
     private By _clickVote = By.xpath("//button[@id=\"vote-poll-1\"]");
 
 
@@ -65,5 +68,14 @@ public class HomePage extends Utils {
         clickOnElement(_clickGood);
         //click on vote
         clickOnElement(_clickVote);
+    }
+
+    public void getProductTitles()
+    {
+        List<WebElement> productTitles = driver.findElements(By.xpath("//div[contains(@class,'product-grid')]//div[@class=\"item-box\"]//h2"));
+        for (WebElement e: productTitles)
+        {
+            System.out.println(e.getText());
+        }
     }
 }

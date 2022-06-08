@@ -4,10 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
 public class RegistrationPage extends Utils{
+    LoadProp loadProp = new LoadProp();
     private By _genderFemale = By.xpath("//input[@id=\"gender-female\"]");
     private By _firstName = By.xpath("//input[@name='FirstName']");
     private By _lastName = By.id("LastName");
     private By _userClickHomeImage = By.xpath("//img[@alt=\"nopCommerce demo store\"]");
+    private By _birthDate = By.name("DateOfBirthDay");
+    private By _registerButton = By.name("register-button");
     public void userEnterRegistration()
     {
         //select gender
@@ -15,15 +18,17 @@ public class RegistrationPage extends Utils{
 
         // enter firstname
         //driver.findElement(By.xpath("//input[@name='FirstName']")).sendKeys("Autoamtion");
-        typeText((_firstName),"Pooja");
+        typeText(_firstName,loadProp.getProperty("Firstname"));
 
         //enter lastname
         //driver.findElement(By.id("LastName")).sendKeys("LastNameTest");
-        typeText((_lastName),"Dhameliya");
+        //typeText((_lastName),"LastName");
+        typeText(_lastName,loadProp.getProperty("Lastname"));
 
         //select birthdate
         Select birthday = new Select(driver.findElement(By.name("DateOfBirthDay")));
         birthday.selectByIndex(10);
+        //selectFromDropDownIndexValue(_birthDate , loadProp.getProperty("DateOfBirthday"));
 
         //birthMonth
         Select birthMonth = new Select(driver.findElement(By.name("DateOfBirthMonth")));
@@ -46,7 +51,8 @@ public class RegistrationPage extends Utils{
 
         //enter register button
         //  driver.findElement(By.name("register-button")).click();
-        clickOnElement(By.name("register-button"));
+        //clickOnElement(By.name("register-button"));
+        clickOnElement(_registerButton);
 
     }
 
